@@ -1,0 +1,18 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "drupal"
+spec:
+  runPolicy: "Serial"
+  source:
+    git:
+      uri: "https://github.com/Dimss/govil-drupal-poc.git"
+  strategy:
+    sourceStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "php72:latest"
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "drupal:0.1"

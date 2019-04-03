@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: drupal
+  lables:
+    app: drupal
+spec:
+  selector:
+    app: drupal
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal
+  labels:
+    app: drupal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drupal
+  template:
+    metadata:
+      labels:
+        app: drupal
+    spec:
+      containers:
+      - name: drupal
+        image: "docker-registry.default.svc:5000/{{namespace}}/drupal:0.1"
+        ports:
+        - containerPort: 8000
