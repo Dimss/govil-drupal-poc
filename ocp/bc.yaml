@@ -15,4 +15,4 @@ spec:
   output:
     to:
       kind: "ImageStreamTag"
-      name: "drupal:0.1"
+      name: "drupal:0.2"
